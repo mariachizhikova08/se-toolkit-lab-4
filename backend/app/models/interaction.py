@@ -28,6 +28,7 @@ class InteractionLogCreate(SQLModel):
     learner_id: int
     item_id: int
     kind: str
+    
 
 
 class InteractionModel(SQLModel):
@@ -37,4 +38,4 @@ class InteractionModel(SQLModel):
     learner_id: int
     item_id: int
     kind: str
-    created_by: datetime
+    created_at: datetime
