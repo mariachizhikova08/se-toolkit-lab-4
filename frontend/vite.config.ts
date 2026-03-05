@@ -1,20 +1,35 @@
-import { defineConfig, loadEnv } from 'vite'
+import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, process.cwd(), '')
-  const target = env.VITE_API_TARGET || 'http://127.0.0.1:42002'
-
-  return {
-    plugins: [react()],
-    server: {
-      proxy: {
-        '/items': target,
-        '/learners': target,
-        '/interactions': target,
-        '/docs': target,
-        '/openapi.json': target,
+export default defineConfig({
+  plugins: [react()],
+  server: {
+    proxy: {
+      '/items': {
+        target: 'http://10.93.25.242:42002',  // ← жёстко прописали
+        changeOrigin: true,
+        secure: false,
+      },
+      '/learners': {
+        target: 'http://10.93.25.242:42002',
+        changeOrigin: true,
+        secure: false,
+      },
+      '/interactions': {
+        target: 'http://10.93.25.242:42002',
+        changeOrigin: true,
+        secure: false,
+      },
+      '/docs': {
+        target: 'http://10.93.25.242:42002',
+        changeOrigin: true,
+        secure: false,
+      },
+      '/openapi.json': {
+        target: 'http://10.93.25.242:42002',
+        changeOrigin: true,
+        secure: false,
       },
     },
-  }
+  },
 })
